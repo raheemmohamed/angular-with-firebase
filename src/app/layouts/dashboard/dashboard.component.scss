@@ -1,0 +1,19 @@
+.dashboard-container {
+  padding: 50px;
+
+  table {
+    width: 100%;
+    mat-header-cell {
+      display: flex;
+      justify-content: center;
+    }
+    mat-cell {
+      display: flex;
+      justify-content: center;
+    }
+  }
+
+  button {
+    margin-bottom: 20px !important;
+  }
+}

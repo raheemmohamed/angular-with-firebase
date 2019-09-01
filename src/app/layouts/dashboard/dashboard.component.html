@@ -1,0 +1,93 @@
+<div *ngIf="authService.isAuth">
+  <app-header></app-header>
+</div>
+
+<!--Table to display the data-->
+<div class="dashboard-container">
+  <div>
+    <button mat-raised-button color="primary"  (click)="createNewEmployees()">
+      <mat-icon>add_circle_outline</mat-icon>
+      Create New Employee
+    </button>
+  </div>
+
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+    <ng-container matColumnDef="firstName">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        First Name </mat-header-cell
+      >
+      <mat-cell *matCellDef="let element"
+        >{{ element.payload.doc.data().f_name }}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="lastName">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Last Name </mat-header-cell
+      >
+      <mat-cell mat-cell *matCellDef="let element"
+        >{{ element.payload.doc.data().last_name }} </mat-cell
+      >
+    </ng-container>
+
+    <ng-container matColumnDef="DOB">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Date of birth
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        {{ element.payload.doc.data().dob.toDate() | date:'dd/MM/yyyy'}}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="address">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Address
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        {{ element.payload.doc.data().address }} </mat-cell
+      >>
+    </ng-container>
+
+    <ng-container matColumnDef="email">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Email
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        {{ element.payload.doc.data().email }}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="telephone">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Telephone
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        {{ element.payload.doc.data().telephone }}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="options">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        options
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+          <button mat-icon-button color="primary" (click)="editEmployee(element.payload.doc.id)">
+              <mat-icon>edit</mat-icon>
+         </button>
+         <button mat-icon-button color="warn" (click)="removeEmployees(element.payload.doc.id)">
+            <mat-icon>delete</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row
+      mat-header-row
+      *matHeaderRowDef="displayedColumns"
+    ></mat-header-row>
+    <mat-row mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </table>
+  <mat-paginator
+    [pageSizeOptions]="[5, 10, 20]"
+    showFirstLastButtons
+  ></mat-paginator>
+</div>

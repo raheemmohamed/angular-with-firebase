@@ -1,0 +1,18 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span>User Management System</span>
+    <span class="header-spacer"></span>
+    <mat-icon
+      class="header-icon"
+      aria-hidden="false"
+      aria-label="user"
+      [matMenuTriggerFor]="menu"
+      >account_circle</mat-icon
+    >
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-menu #menu="matMenu">
+  <button mat-menu-item>Profile setting</button>
+  <button mat-menu-item (click)="authService.logout()" >logout</button>
+</mat-menu>

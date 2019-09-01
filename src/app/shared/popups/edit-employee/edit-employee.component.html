@@ -1,0 +1,121 @@
+<div fxLayout="row" fxLayoutAlign="space-between" >
+  <h2 mat-dialog-title>
+   Update employee
+  </h2>
+
+  <button mat-icon-button mat-dialog-close color="primary">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+<mat-dialog-content>
+  <form
+  
+    [formGroup]="employeeUpdateForm"
+    (ngSubmit)="updateEmployee(data.employeeId, employeeUpdateForm.value)"
+    class="employee-form"
+  >
+    <table cellspacing="0">
+      <tr>
+        <td>
+          <mat-form-field>
+            <input
+              matInput
+              placeholder="First name"
+              formControlName="firstName"
+            />
+            <mat-error *ngIf="employeeUpdateForm.get('firstName').errors?.required">
+              *This field is required
+            </mat-error>
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field>
+            <input
+              matInput
+              placeholder="Last Name"
+              formControlName="lastName"
+            />
+            <mat-error *ngIf="employeeUpdateForm.get('lastName').errors?.required">
+              *This field is required
+            </mat-error>
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field>
+            <input
+              matInput
+              [matDatepicker]="picker"
+              placeholder="Date of birth"
+              formControlName="dob"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="employeeUpdateForm.get('dob').errors?.required">
+              *This field is required
+            </mat-error>
+          </mat-form-field>
+        </td>
+      </tr>
+    </table>
+
+    <p>
+      <mat-form-field>
+        <textarea
+          matInput
+          placeholder="Address"
+          formControlName="address"
+          fxFlexFill
+        ></textarea>
+        <mat-error *ngIf="employeeUpdateForm.get('address').errors?.required">
+          *This field is required
+        </mat-error>
+      </mat-form-field>
+    </p>
+    <table cellspacing="0">
+      <tr>
+        <td>
+          <mat-form-field>
+            <input
+              type="email"
+              matInput
+              placeholder="Email"
+              formControlName="email"
+              email
+            />
+            <mat-error *ngIf="employeeUpdateForm.get('email').errors?.required">
+              Please enter your email
+            </mat-error>
+            <mat-error *ngIf="employeeUpdateForm.get('email').errors?.email">
+              Please enter your valid Email
+            </mat-error>
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field>
+            <input
+              matInput
+              placeholder="telephone"
+              formControlName="telephone"
+            />
+            <mat-error *ngIf="employeeUpdateForm.get('telephone').errors?.required">
+              *This field is required
+            </mat-error>
+          </mat-form-field>
+        </td>
+      </tr>
+    </table>
+
+    <button
+      type="submit"
+      [disabled]="!employeeUpdateForm.valid"
+      mat-raised-button
+      color="primary"
+      fxFlexFill
+    >
+      Submit
+    </button>
+  </form>
+</mat-dialog-content>
